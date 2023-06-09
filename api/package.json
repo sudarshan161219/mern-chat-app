@@ -1,0 +1,19 @@
+{
+  "name": "mern-chat_app",
+  "version": "1.0.0",
+  "description": "my first mern stack chat app",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon app.mjs"
+  },
+  "author": "sudarshan.s",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.2",
+    "nodemon": "^2.0.22"
+  }
+}
