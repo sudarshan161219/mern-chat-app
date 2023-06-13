@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap');
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -45,7 +47,7 @@ table {
 
 
 body::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.1em;
 }
  
 body::-webkit-scrollbar-track {
@@ -55,4 +57,15 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+}
+
+body{
+	font-family: 'Work Sans', sans-serif;
+	font-size: 2rem;
+	color: #F9F9F9;
+	background-color: #040303;
+	  scroll-snap-type: mandatory;
+  overflow-y: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
