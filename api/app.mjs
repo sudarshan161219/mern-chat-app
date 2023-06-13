@@ -3,10 +3,12 @@ import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
 import { chats } from "./data/data.js";
+import connectDb from "./DB/connectDb.mjs";
+import userRoute from "./routes/userRoute.mjs";
 const app = express();
 
 const port = process.env.PORT || 4000;
-
+const uri = process.env.MONGO_URI;
 
 const corsOptions = {
   origin: "http://localhost:5173",
@@ -20,18 +22,12 @@ app.get("/", (req, res) => {
   res.send("<h1>HOME</h1>");
 });
 
-app.get("/api/chat", (req, res) => {
-  res.send(chats);
-});
+app.use("/api/user", userRoute);
 
-app.get("/api/chat/:id", (req, res) => {
-  const param = req.params.id;
-  const singleChat = chats.find((c) => c._id === param);
-  res.send(singleChat);
-});
-
-const start = () => {
+const start = async () => {
   try {
+    await connectDb(uri);
+    console.log("connected to Db....");
     app.listen(port, console.log(`server: http://localhost:${port}/`));
   } catch (error) {
     console.log(error);
