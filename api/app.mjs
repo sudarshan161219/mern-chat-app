@@ -5,6 +5,8 @@ import cors from "cors";
 import { chats } from "./data/data.js";
 import connectDb from "./DB/connectDb.mjs";
 import userRoute from "./routes/userRoute.mjs";
+import notFoundMiddleware from "./middleWare/notFound.js"
+import errorHandlerMiddleware from "./middleWare/errorHander.js"
 const app = express();
 
 const port = process.env.PORT || 4000;
@@ -17,12 +19,15 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
+app.use(express.json());
 app.get("/", (req, res) => {
   res.send("<h1>HOME</h1>");
 });
 
 app.use("/api/user", userRoute);
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
