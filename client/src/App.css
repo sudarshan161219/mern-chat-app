@@ -152,6 +152,7 @@ body::-webkit-scrollbar-thumb {
   /* justify-content: center; */
 padding: 0.8rem;
 color: #EEEEEE;
+ background-attachment: fixed;
 }
 .box-1{
         background: rgba(36, 35, 35, 0.6);
