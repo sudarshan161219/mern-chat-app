@@ -10,7 +10,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -98,7 +98,7 @@ const SignUp = () => {
       toast.success("Account created successfully!");
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/chat");
+      navigate("/login");
     } catch (error) {
       console.log(error);
       console.log(error.response.data.message);
@@ -109,7 +109,6 @@ const SignUp = () => {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
 
       <VStack spacing={4} align="stretch">
         <FormControl id="name" isRequired>

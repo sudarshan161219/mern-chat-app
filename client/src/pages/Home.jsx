@@ -9,9 +9,13 @@ import {
   TabPanel,
 } from "@chakra-ui/react";
 import  {Login, SignUp} from "../components"
+import { Toaster } from "react-hot-toast";
+
 const Home = () => {
   return (
     <Container gap="10px" display="grid" maxW="550px">
+      <Toaster position="top-center" reverseOrder={false} />
+
       <Box
         className="box-1"
         d="flex"

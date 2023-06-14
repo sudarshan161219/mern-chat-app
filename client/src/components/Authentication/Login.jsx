@@ -10,8 +10,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-hot-toast";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,16 +26,7 @@ const Login = () => {
   const handleSubmitt = async () => {
     setLoading(true);
     if (!email || !password) {
-      toast.error("Please fill all the feilds", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      toast.error("Please fill all the feilds");
       setLoading(false);
       return;
     }
@@ -54,50 +45,23 @@ const Login = () => {
         },
         config
       );
-      toast.success("login success!", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+  
+      toast.success("login success!!");
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/");
+      setTimeout(() => {
+        navigate("/chat");
+      }, 2500);
     } catch (error) {
       console.log(error);
       console.log(error.response.data.message);
-      toast.error("Error Occured", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      toast.error("Error Occured");
       setLoading(false);
     }
   };
 
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
       <VStack spacing={4} align="stretch">
         <FormControl id="Loginemail" isRequired>
           <FormLabel>Email</FormLabel>
