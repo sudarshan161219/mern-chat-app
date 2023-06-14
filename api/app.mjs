@@ -5,6 +5,7 @@ import cors from "cors";
 import { chats } from "./data/data.js";
 import connectDb from "./DB/connectDb.mjs";
 import userRoute from "./routes/userRoute.mjs";
+import chatRoute from "./routes/chatRoute.mjs"
 import notFoundMiddleware from "./middleWare/notFound.js"
 import errorHandlerMiddleware from "./middleWare/errorHander.js"
 const app = express();
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userRoute);
+app.use("/api/chat", chatRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

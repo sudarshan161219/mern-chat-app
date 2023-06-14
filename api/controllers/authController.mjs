@@ -54,13 +54,28 @@ const login = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Invalid Credentials");
   }
-    res.status(200).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      pic: user.pic,
-      token: generateToken(user._id),
-    });
+  res.status(200).json({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    pic: user.pic,
+    token: generateToken(user._id),
+  });
 });
 
-export { register, login };
+const allUsers = asyncHandler(async (req, res) => {
+  const keyWord = req.query.search
+    ? {
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const users = await User.find(keyWord).find({ _id: { $ne: req.user._id } });
+  // const users = await User.find(keyWord)
+  res.send(users)
+});
+
+export { register, login, allUsers };
