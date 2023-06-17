@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
-import { chats } from "./data/data.js";
 import connectDb from "./DB/connectDb.mjs";
 import userRoute from "./routes/userRoute.mjs";
 import chatRoute from "./routes/chatRoute.mjs"
@@ -15,7 +14,7 @@ const uri = process.env.MONGO_URI;
 
 const corsOptions = {
   origin: "http://localhost:5173",
-  credentials: true, //access-control-allow-credentials:true
+  credentials: true,
   optionSuccessStatus: 200,
 };
 
